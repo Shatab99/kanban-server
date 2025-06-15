@@ -1,82 +1,179 @@
-## Express basic Server with typescript 
+# 📝 Task Manager App – API Server
 
-Hello developers ,hope you all are well.Basically in development sector most irritating thing is setup a server then code . that's I have created a basic server which contains some validations handlers .Errors are the most common things in development . So backend developers need to structure this errors so that client / frontend site can understand easily what's going on . that's why I have created this type of folder structure which will make your development journey smooth . so follow the steps to setup this basic Express server .
+This is the backend server for a Kanban-style Task Manager application, built using RESTful principles. It handles user authentication and full task management functionalities (create, update, delete, and status-based filtering for tasks).
 
-### Features used
+---
 
-- Global handlers
-  - Cast error handlers (mongoose)
-  - validation error handlers (mongoose)
-  - zod validation error handlers (zod)
-
--  Global Interface 
-    - generic error interface
-    - jwt payload interface
-
-- utils 
-    - catchAsync (which resolve try catch promise functions in express)
-    - global error (which returns same structured errors to client site )
-    - validation middleware (which solves to validate zod schema in body)
-  
-    ```
-    const validate = z.object({
-        body : z.object({
-            // your code here
-        })
-    }) 
-    ```
-
-### step 1 
+## 🌐 Base URL
 
 ```
-git clone https://github.com/Shatab99/basic-express-server-ts.git
+http://localhost:3000/api/v1
 ```
 
-### step 2
-
-```
-cd basic-express-server-ts
-```
-
-### step 3
-
-```
-rmdir /s /q .git
+💡 Store this in a variable:
+```ts
+const BASE_URL = "http://localhost:3000/api/v1";
 ```
 
-### step 4
+---
+
+## 🔐 Authentication APIs
+
+### 🔸 Login
 
 ```
-npm i 
+Endpoint: POST /auth/login
 ```
 
-### step 5
-
-```
-mkdir .env
-```
-
-### step 6 (Paste the files on env and configure it with your own way)
-
-```
-Node_ENV= development
-PORT=5000
-DATABASE_URL= <Your mongo db uri>
-DefaultPass = <Your default password>
-jwt_secret= <Your jwt secret gengerated from node >
+**Body:**
+```json
+{
+  "email": "your_email@example.com",
+  "password": "your_password"
+}
 ```
 
+**Response:**
+```json
+{
+  "token": "JWT_TOKEN_HERE",
+  "user": {
+    "name": "User Name",
+    "email": "user@example.com"
+  }
+}
+```
 
+✅ Store both the `token` and `user` object in `localStorage`.
 
+---
 
-<div>
-<br>
-<br>
-</div>
+## 👤 User APIs
 
-## Folder structure look like 
+### 🔸 Get User Profile (GetMe)
 
-![Screenshot](./assets/Screenshot%202024-11-05%20093115.png)
+```
+Endpoint: GET /users/getme
+```
 
+**Headers:**
+```
+Authorization: Bearer <token>
+```
 
+---
 
+### 🔸 Sign Up (Create New User)
+
+```
+Endpoint: POST /users/create
+```
+
+**Body:**
+```json
+{
+  "name": "Your Name",
+  "email": "your_email@example.com",
+  "password": "your_password"
+}
+```
+
+---
+
+## 📋 Task APIs (Kanban System)
+
+### 🔸 Get "To Do" Tasks
+
+```
+Endpoint: GET /tasks/get-todo-tasks
+```
+
+---
+
+### 🔸 Get "In Progress" Tasks
+
+```
+Endpoint: GET /tasks/get-in-progress-tasks
+```
+
+---
+
+### 🔸 Get "Completed" Tasks
+
+```
+Endpoint: GET /tasks/get-completed-tasks
+```
+
+---
+
+### 🔸 Create a Task
+
+```
+Endpoint: POST /tasks/create-task
+```
+
+**Body:**
+```json
+{
+  "title": "Task Title",
+  "description": "Task Description",
+  "priority": "High | Medium | Low",
+  "status": "To Do | In Progress | Completed",
+  "dueDate": "YYYY-MM-DD"
+}
+```
+
+---
+
+### 🔸 Update a Task
+
+```
+Endpoint: PUT /tasks/update-task
+```
+
+**Body:**
+```json
+{
+  "taskId": "task_id_here",
+  "title": "Optional",
+  "description": "Optional",
+  "priority": "Optional",
+  "status": "Optional",
+  "dueDate": "Optional"
+}
+```
+
+---
+
+### 🔸 Delete a Task
+
+```
+Endpoint: DELETE /tasks/delete-task/:taskId
+```
+
+---
+
+## 🛠️ Setup Instructions
+
+```bash
+# Clone the project
+git clone https://github.com/your-username/taskmanager-server.git
+cd taskmanager-server
+
+# Install dependencies
+npm install
+
+# Create environment variables
+cp .env.example .env
+
+# Run the development server
+npm run dev
+```
+
+---
+
+## 📫 Contact
+
+If you have any questions or issues, feel free to contact the maintainer.
+
+---
