@@ -6,14 +6,16 @@ This is the backend server for a Kanban-style Task Manager application, built us
 
 ## 🌐 Base URL
 
+**local** :
 ```
 http://localhost:3000/api/v1
 ```
 
-💡 Store this in a variable:
-```ts
-const BASE_URL = "http://localhost:3000/api/v1";
+**Production**
 ```
+https://kanban-server-production-53de.up.railway.app/api/v1
+```
+
 
 ---
 
