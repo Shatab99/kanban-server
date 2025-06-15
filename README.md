@@ -174,6 +174,10 @@ npm run dev
 
 ## 📫 Contact
 
-If you have any questions or issues, feel free to contact the maintainer.
+If you have any questions or issues, feel free ask me , if you need connection string you can directly mail me .
+
+```
+shatabag4749@gmail.com
+```
 
 ---
