@@ -6,7 +6,7 @@ export const taskValidation = z.object({
         description: z.string().min(5).max(500),
         priority: z.enum(["low", "medium", "high"]),
         status: z.enum(["todo", "in-progress", "completed"]),
-        dueDate: z.date()
+        dueDate: z.string()
     })
 })
 
@@ -17,6 +17,6 @@ export const updateTaskValidation = z.object({
         description: z.string().min(5).max(500).optional(),
         priority: z.enum(["low", "medium", "high"]).optional(),
         status: z.enum(["todo", "in-progress", "completed"]).optional(),
-        dueDate: z.date().optional()
+        dueDate: z.string().optional()
     })
 })
